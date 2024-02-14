@@ -1,0 +1,59 @@
+Docker Command to create Grafana container with Plugin Installed:
+
+docker run -d -p 3000:3000 --name=grafanaserver -e "GF_INSTALL_PLUGINS=grafana-googlesheets-datasource" -e "GF_SECURITY_ADMIN_USER=admin" -e "GF_SECURITY_ADMIN_PASSWORD=admin" grafana/grafana:latest
+
+--------------------------------------------------------------
+or 
+
+Create Grafana as Docker container:
+
+docker run -d -p 3000:3000 --name=grafanaserver -e "GF_SECURITY_ADMIN_USER=admin" -e "GF_SECURITY_ADMIN_PASSWORD=password" grafana/grafana:latest
+
+Command to Install Grafana Plugin:
+
+docker exec -it grafanaserver bash
+grafana-cli plugins install grafana-googlesheets-datasource
+
+------------------------------------------------
+Create google Api Key:
+https://console.cloud.google.com/home/
+
+go to api and service -> credential -> create api key -> copy api key 
+
+Api key -> AIzaSyCTPEZ_RmGbIZhu7LVW5gIU6W_ZdEtxA_Q
+
+
+Go to api and service -> Enable Api and Service -> Serch Google Sheets API -> Enable 
+-------------------------------------------------
+
+Add datasource to Grafana 
+
+paste api key -> save and test 
+
+------------------------------------------------
+
+Go to googlesheets -> share -> anyone with link -> copy link 
+
+https://docs.google.com/spreadsheets/d/19Icb2pEWnb3c7AFvUwHuk02H4Owr2gdprmkclrKAdnA/edit?usp=sharing
+
+https://docs.google.com/spreadsheets/d/19Icb2pEWnb3c7AFvUwHuk02H4Owr2gdprmkclrKAdnA/edit?usp=sharing
+
+need this -> 
+19Icb2pEWnb3c7AFvUwHuk02H4Owr2gdprmkclrKAdnA
+
+spreadsheets - 
+https://docs.google.com/spreadsheets/d/19Icb2pEWnb3c7AFvUwHuk02H4Owr2gdprmkclrKAdnA/edit#gid=0
+
+
+-----------------------------------------
+for grafana package manager installation -> 
+
+cd /usr/sbin 
+sudo apt install npm
+npm install -g @grafana/toolkit
+grafana-cli plugins install grafana-googlesheets-datasource
+sudo service grafana-server restart
+
+
+
+
